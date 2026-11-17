@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<script>document.documentElement.classList.add('js');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>卓正 — 技术美术 TA</title>
+<meta name="description" content="卓正的技术美术作品集。UE5 / Unity 的 Shader、场景、特效与工具链。在好看的画面和跑得动的帧率之间，找能交付的平衡点。" />
+<meta property="og:title" content="卓正 — 技术美术 TA" />
+<meta property="og:description" content="每个像素都有代价。UE5 / Unity · Shader · 场景 · 特效。" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="assets/og.png" />
+<meta name="author" content="卓正" />
+<meta name="theme-color" content="#0b0b0c" />
+<script>
+try {
+  var t = localStorage.getItem('zz-theme');
+  if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  document.documentElement.dataset.theme = t;
+} catch (e) {}
+</script>
+<link rel="stylesheet" href="assets/style.css?v=6" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b0b0c'/><circle cx='50' cy='50' r='24' fill='%23c8ff4d'/></svg>" />
+</head>
+<body>
+
+<!-- 载入遮罩 -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__inner">
+    <span class="preloader__name"><i>Z</i><i>Z</i><i>Z</i></span>
+    <span class="preloader__count" id="count">00</span>
+  </div>
+  <div class="preloader__bar"><i id="preBar"></i></div>
+</div>
+
+<!-- 光标 -->
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
+<!-- 滚动进度 -->
+<div class="scrollbar" aria-hidden="true"><i id="scrollProgress"></i></div>
+
+<!-- 背景光晕 -->
+<div class="aurora" aria-hidden="true">
+  <span class="aurora__blob aurora__blob--a"></span>
+  <span class="aurora__blob aurora__blob--b"></span>
+  <span class="aurora__blob aurora__blob--c"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<a class="skip" href="#work">跳到作品</a>
+
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#top" data-magnet>
+    <span class="nav__mark">卓正</span><sup>©</sup>
+  </a>
+  <nav class="nav__links" aria-label="主导航">
+    <a href="#about" data-cursor="读">自己</a>
+    <a href="#work" data-cursor="看">作品</a>
+    <a href="#contact" data-cursor="聊">联系</a>
+  </nav>
+  <div class="nav__right">
+    <span class="nav__clock" id="clock" aria-label="本地时间">--:--:--</span>
+    <button class="switch" id="themeBtn" type="button" aria-label="切换明暗主题" aria-pressed="false">
+      <span class="switch__dot"></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero__meta">
+      <span class="dot-live" aria-hidden="true"></span>
+      <span>技术美术 · TA</span>
+      <span class="hero__sep">/</span>
+      <span>27 届 · 求职中</span>
+    </div>
+
+    <h1 class="hero__title" data-split>
+      每个像素<br />都有<span class="serif">代价</span>
+    </h1>
+
+    <div class="hero__bottom">
+      <p class="hero__lede">
+        我是卓正，技术美术。写 Shader、搭场景、调性能。<br />
+        <em>让美术想要的效果，在真机上真的跑得动。</em>
+      </p>
+      <a class="scroll-cue" href="#manifesto" data-cursor="↓">
+        <span>往下</span>
+        <span class="scroll-cue__line" aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="hero__grain-word" aria-hidden="true">TECHNICAL ARTIST</div>
+  </section>
+
+  <!-- ============ 走马灯 ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>AI-AGENT</span><i>✳</i><span>UE5</span><i>✳</i><span>NIAGARA</span><i>✳</i><span>UNITY</span><i>✳</i><span>SHADER</span><i>✳</i>
+      <span>AI-AGENT</span><i>✳</i><span>UE5</span><i>✳</i><span>NIAGARA</span><i>✳</i><span>UNITY</span><i>✳</i><span>SHADER</span><i>✳</i>
+      <span>AI-AGENT</span><i>✳</i><span>UE5</span><i>✳</i><span>NIAGARA</span><i>✳</i><span>UNITY</span><i>✳</i><span>SHADER</span><i>✳</i>
+      <span>AI-AGENT</span><i>✳</i><span>UE5</span><i>✳</i><span>NIAGARA</span><i>✳</i><span>UNITY</span><i>✳</i><span>SHADER</span><i>✳</i>
+    </div>
+  </div>
+
+  <!-- ============ 宣言 ============ -->
+  <section class="section manifesto" id="manifesto">
+    <p class="label" data-reveal><span>01</span> 我是谁</p>
+    <p class="manifesto__text" data-reveal>
+      TA 不是把画面做好看，
+      <span class="hl">是让好看的东西跑起来。</span>
+    </p>
+    <p class="manifesto__text manifesto__text--sub" data-reveal>
+      简历上的写法是「在视觉表现上限和运行时性能之间找最优解」。
+      <em>说人话：我能把效果做出来，也能把它压到 60 帧。</em>
+    </p>
+    <ul class="pills" data-reveal>
+      <li>UE5</li>
+      <li>Unity</li>
+      <li>Shader Graph</li>
+      <li>C#</li>
+      <li>Niagara</li>
+      <li>Substance 3D</li>
+    </ul>
+  </section>
+
+  <!-- ============ 作品 ============ -->
+  <section class="section work" id="work">
+    <div class="section__head">
+      <p class="label" data-reveal><span>02</span> 精选作品</p>
+      <h2 class="section__title" data-reveal>做出来的<br class="br-sm" />东西</h2>
+      <p class="section__note" data-reveal>2026 · 点开看演示视频<br />（视频在 B 站）</p>
+    </div>
+
+    <div class="cards">
+      <a class="card" href="https://www.bilibili.com/video/BV1PQsP6HEyo" target="_blank" rel="noopener"
+         data-video="BV1PQsP6HEyo" data-video-title="UE5 + AI Agent" data-cursor="看">
+        <div class="card__media" data-reveal="clip">
+          <span class="orb"><svg viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <radialGradient id="og1" cx="50%" cy="50%" r="50%">
+                <stop offset="52%" stop-color="#a78bfa" stop-opacity=".50"/>
+                <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="ob1" cx="33%" cy="27%" r="78%">
+                <stop offset="0%" stop-color="#d8ccff"/>
+                <stop offset="42%" stop-color="#a78bfa"/>
+                <stop offset="74%" stop-color="#4453ff"/>
+                <stop offset="100%" stop-color="#08080a"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="100" fill="url(#og1)"/>
+            <circle cx="100" cy="100" r="74" fill="url(#ob1)"/>
+          </svg></span>
+          <span class="card__view">看视频 <b>↗</b></span>
+        </div>
+        <div class="card__info">
+          <h3>UE5 + AI Agent</h3>
+          <p>在 UE5 场景里接入 AI Agent，驱动角色行为与交互</p>
+          <span class="card__year">2026</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.bilibili.com/video/BV1WQsP6nEq8" target="_blank" rel="noopener"
+         data-video="BV1WQsP6nEq8" data-video-title="UE5 场景搭建 · 交互蓝图" data-cursor="看">
+        <div class="card__media" data-reveal="clip">
+          <span class="orb"><svg viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <radialGradient id="og2" cx="50%" cy="50%" r="50%">
+                <stop offset="52%" stop-color="#8eff3c" stop-opacity=".50"/>
+                <stop offset="100%" stop-color="#8eff3c" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="ob2" cx="33%" cy="27%" r="78%">
+                <stop offset="0%" stop-color="#dcffb0"/>
+                <stop offset="42%" stop-color="#8eff3c"/>
+                <stop offset="74%" stop-color="#2dd4a7"/>
+                <stop offset="100%" stop-color="#08080a"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="100" fill="url(#og2)"/>
+            <circle cx="100" cy="100" r="74" fill="url(#ob2)"/>
+          </svg></span>
+          <span class="card__view">看视频 <b>↗</b></span>
+        </div>
+        <div class="card__info">
+          <h3>UE5 场景 · 蓝图交互</h3>
+          <p>自建场景 + 蓝图：拾取、开箱、按 E 交互</p>
+          <span class="card__year">2026</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.bilibili.com/video/BV1HeYC61Egx" target="_blank" rel="noopener"
+         data-video="BV1HeYC61Egx" data-video-title="Unity 燃烧效果 Shader" data-cursor="看">
+        <div class="card__media" data-reveal="clip">
+          <span class="orb"><svg viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <radialGradient id="og3" cx="50%" cy="50%" r="50%">
+                <stop offset="52%" stop-color="#ff7a2f" stop-opacity=".50"/>
+                <stop offset="100%" stop-color="#ff7a2f" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="ob3" cx="33%" cy="27%" r="78%">
+                <stop offset="0%" stop-color="#ffcf9c"/>
+                <stop offset="42%" stop-color="#ff7a2f"/>
+                <stop offset="74%" stop-color="#ff2f6d"/>
+                <stop offset="100%" stop-color="#08080a"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="100" fill="url(#og3)"/>
+            <circle cx="100" cy="100" r="74" fill="url(#ob3)"/>
+          </svg></span>
+          <span class="card__view">看视频 <b>↗</b></span>
+        </div>
+        <div class="card__info">
+          <h3>Unity 燃烧效果 Shader</h3>
+          <p>Shader Graph 材质改写 · 暴露 BurningValue · C# 版本再优化</p>
+          <span class="card__year">2026</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.bilibili.com/video/BV1neYC6yE1d" target="_blank" rel="noopener"
+         data-video="BV1neYC6yE1d" data-video-title="Unity 投影效果" data-cursor="看">
+        <div class="card__media" data-reveal="clip">
+          <span class="orb"><svg viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <radialGradient id="og4" cx="50%" cy="50%" r="50%">
+                <stop offset="52%" stop-color="#2fd8ff" stop-opacity=".50"/>
+                <stop offset="100%" stop-color="#2fd8ff" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="ob4" cx="33%" cy="27%" r="78%">
+                <stop offset="0%" stop-color="#c9f5ff"/>
+                <stop offset="42%" stop-color="#2fd8ff"/>
+                <stop offset="74%" stop-color="#b04bff"/>
+                <stop offset="100%" stop-color="#08080a"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="100" fill="url(#og4)"/>
+            <circle cx="100" cy="100" r="74" fill="url(#ob4)"/>
+          </svg></span>
+          <span class="card__view">看视频 <b>↗</b></span>
+        </div>
+        <div class="card__info">
+          <h3>Unity 投影效果</h3>
+          <p>半透明材质 + Noise 扰动 · 数轴可控 · 自动化收放</p>
+          <span class="card__year">2026</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 关于 ============ -->
+  <section class="section about" id="about">
+    <p class="label" data-reveal><span>03</span> 关于</p>
+    <div class="about__grid">
+      <div class="about__body">
+        <p data-reveal>数字媒体艺术本科，27 届。方向是技术美术：渲染、特效、工具链。</p>
+        <p data-reveal>在 Unity 里用 Shader Graph 和 C# 各写了一遍燃烧效果，就为了比较两边的开销；在 UE5 里搭场景、连蓝图，把交互一步步跑通；也写小工具替自己省时间。</p>
+        <p data-reveal>比起「效果很酷」，我更在意<em>它能不能在真机上稳住</em>。</p>
+      </div>
+
+      <figure class="about__portrait" data-reveal>
+        <img src="assets/work/portrait.jpg" alt="卓正的照片" width="900" height="1200" loading="lazy" />
+        <figcaption>卓正 · 技术美术</figcaption>
+      </figure>
+
+      <dl class="about__stats" data-reveal>
+        <div><dt>现在</dt><dd>求职中 · TA 实习 / 校招</dd></div>
+        <div><dt>方向</dt><dd>渲染 · 特效 · 工具</dd></div>
+        <div><dt>工具</dt><dd>UE5 · Unity · C#、3ds Max · ZBrush · Substance</dd></div>
+        <div><dt>学历</dt><dd>本科 · 数字媒体艺术</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ 联系 ============ -->
+  <section class="section contact" id="contact">
+    <p class="label" data-reveal><span>04</span> 联系</p>
+    <p class="contact__say" data-reveal>有岗位，<br />或者只是想聊聊 Shader。</p>
+    <button class="contact__mail" id="mailBtn" data-magnet data-cursor="复制" type="button" aria-label="复制邮箱地址">
+      <span class="contact__mail-text">2930316366@qq.com</span>
+      <span class="contact__mail-hint">点击复制</span>
+    </button>
+    <div class="contact__links" data-reveal>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener" data-magnet>简历 PDF ↓</a>
+      <a href="https://www.bilibili.com/video/BV1HeYC61Egx" target="_blank" rel="noopener" data-magnet>B站 · 燃烧 ↗</a>
+      <a href="https://www.bilibili.com/video/BV1neYC6yE1d" target="_blank" rel="noopener" data-magnet>B站 · 投影 ↗</a>
+      <a href="tel:15682121731" data-magnet>电话 / 微信 15682121731</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__row">
+    <span>© 2026 卓正</span>
+    <button class="foot__egg" id="chaosBtn" type="button" aria-pressed="false">按 <kbd>G</kbd> 试试</button>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- 视频灯箱 -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="作品视频" aria-hidden="true" tabindex="-1">
+  <button class="lightbox__close" id="lbClose" type="button" aria-label="关闭视频">✕</button>
+  <div class="lightbox__frame">
+    <iframe id="lbFrame" title="作品视频" src="about:blank"
+            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="no-referrer"></iframe>
+  </div>
+  <p class="lightbox__cap" id="lbCap"></p>
+</div>
+
+<script src="assets/main.js?v=6"></script>
+</body>
+</html>
+
+
+
+
+
+
